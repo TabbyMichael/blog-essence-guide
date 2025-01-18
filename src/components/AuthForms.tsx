@@ -13,7 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { toast } from "sonner";
-import { Eye, EyeOff, Google } from "lucide-react";
+import { Eye, EyeOff, LogIn } from "lucide-react";
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -180,7 +180,7 @@ export function AuthForms() {
             className="w-full"
             onClick={handleGoogleSignIn}
           >
-            <Google className="mr-2 h-4 w-4" />
+            <LogIn className="mr-2 h-4 w-4" />
             Sign in with Google
           </Button>
         </form>

@@ -30,12 +30,15 @@ const signupSchema = z.object({
   path: ["confirmPassword"],
 });
 
+type LoginFormData = z.infer<typeof loginSchema>;
+type SignupFormData = z.infer<typeof signupSchema>;
+
 export function AuthForms() {
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const form = useForm<z.infer<typeof isLogin ? typeof loginSchema : typeof signupSchema>>({
+  const form = useForm<LoginFormData | SignupFormData>({
     resolver: zodResolver(isLogin ? loginSchema : signupSchema),
     defaultValues: isLogin ? {
       email: "",
@@ -48,7 +51,7 @@ export function AuthForms() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof isLogin ? typeof loginSchema : typeof signupSchema>) {
+  function onSubmit(values: LoginFormData | SignupFormData) {
     toast.success(`${isLogin ? "Logged in" : "Signed up"} successfully!`);
     console.log(values);
   }

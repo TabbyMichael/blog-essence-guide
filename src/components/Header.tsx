@@ -48,7 +48,7 @@ export function Header() {
                   <UserCircle className="h-6 w-6" />
                 </Button>
               </SheetTrigger>
-              <SheetContent className="w-full sm:max-w-md overflow-y-auto">
+              <SheetContent className="w-full sm:max-w-full overflow-y-auto">
                 <SheetHeader className="mb-6">
                   <SheetTitle>Account</SheetTitle>
                   <SheetDescription>

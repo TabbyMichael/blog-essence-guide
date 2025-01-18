@@ -1,5 +1,6 @@
 import { Github, Twitter, Facebook, Instagram, Mail } from "lucide-react";
 import { Button } from "./ui/button";
+import { Input } from "./ui/input";
 
 export function Footer() {
   return (

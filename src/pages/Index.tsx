@@ -12,15 +12,41 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-// Generate 100 blog posts
+// Generate 100 meaningful blog posts
 const generatePosts = () => {
   const categories = ["Development", "Technology", "Productivity", "Design", "Business"];
   const posts = [];
   
+  const blogTitles = [
+    "The Future of Artificial Intelligence in 2024",
+    "10 Essential Web Development Tools Every Developer Should Know",
+    "Understanding React Hooks: A Comprehensive Guide",
+    "Building Scalable Applications with Microservices",
+    "The Complete Guide to UI/UX Design Principles",
+    "Mastering TypeScript: Advanced Tips and Tricks",
+    "Cloud Computing: AWS vs Azure vs Google Cloud",
+    "The Rise of No-Code Development Platforms",
+    "Cybersecurity Best Practices for Developers",
+    "Machine Learning Fundamentals Explained",
+    "DevOps Pipeline Optimization Strategies",
+    "Mobile App Development Trends in 2024",
+    "Blockchain Technology: Beyond Cryptocurrency",
+    "Software Architecture Patterns Explained",
+    "The Impact of 5G on Web Applications",
+    "Progressive Web Apps: A Complete Guide",
+    "Data Science for Beginners: Getting Started",
+    "Modern CSS Techniques and Best Practices",
+    "API Design and Development Guidelines",
+    "Testing Strategies for Modern Applications"
+  ];
+  
   for (let i = 1; i <= 100; i++) {
+    const titleIndex = (i - 1) % blogTitles.length;
+    const title = i <= blogTitles.length ? blogTitles[i - 1] : `${blogTitles[titleIndex]} - Part ${Math.ceil(i / blogTitles.length)}`;
+    
     posts.push({
-      title: `Blog Post ${i}`,
-      excerpt: `This is a brief description of blog post ${i}. Click to read more about this interesting topic.`,
+      title,
+      excerpt: `Discover insights and practical tips about ${title.toLowerCase()}. This comprehensive guide will help you understand the key concepts and best practices.`,
       category: categories[Math.floor(Math.random() * categories.length)],
       readingTime: `${Math.floor(Math.random() * 10 + 3)} min read`,
       image: `https://picsum.photos/seed/${i}/800/600`,

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 
-// Mock data - in a real app, this would come from an API
+// Mock data with meaningful blog posts
 const posts = {
   "getting-started-web-development": {
     title: "Getting Started with Web Development",

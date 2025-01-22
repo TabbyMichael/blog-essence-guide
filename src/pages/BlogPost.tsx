@@ -4,35 +4,73 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 
-// Mock data with meaningful blog posts
-const posts = {
-  "getting-started-web-development": {
-    title: "Getting Started with Web Development",
-    content: `
-      <p>Web development is an exciting journey that opens up countless opportunities in the digital world. Whether you're looking to build websites, web applications, or even mobile apps, understanding the fundamentals of web development is crucial.</p>
-      
-      <h2>The Basics</h2>
-      <p>To get started with web development, you'll need to learn three core technologies:</p>
-      <ul>
-        <li>HTML for structure</li>
-        <li>CSS for styling</li>
-        <li>JavaScript for interactivity</li>
-      </ul>
+// Generate the same blog posts data as in Index.tsx
+const generatePosts = () => {
+  const categories = ["Development", "Technology", "Productivity", "Design", "Business"];
+  const blogTitles = [
+    "The Future of Artificial Intelligence in 2024",
+    "10 Essential Web Development Tools Every Developer Should Know",
+    "Understanding React Hooks: A Comprehensive Guide",
+    "Building Scalable Applications with Microservices",
+    "The Complete Guide to UI/UX Design Principles",
+    "Mastering TypeScript: Advanced Tips and Tricks",
+    "Cloud Computing: AWS vs Azure vs Google Cloud",
+    "The Rise of No-Code Development Platforms",
+    "Cybersecurity Best Practices for Developers",
+    "Machine Learning Fundamentals Explained",
+    "DevOps Pipeline Optimization Strategies",
+    "Mobile App Development Trends in 2024",
+    "Blockchain Technology: Beyond Cryptocurrency",
+    "Software Architecture Patterns Explained",
+    "The Impact of 5G on Web Applications",
+    "Progressive Web Apps: A Complete Guide",
+    "Data Science for Beginners: Getting Started",
+    "Modern CSS Techniques and Best Practices",
+    "API Design and Development Guidelines",
+    "Testing Strategies for Modern Applications"
+  ];
 
-      <h2>Next Steps</h2>
-      <p>Once you've mastered the basics, you can move on to more advanced topics like:</p>
-      <ul>
-        <li>Frontend frameworks (React, Vue, Angular)</li>
-        <li>Backend development</li>
-        <li>Database management</li>
-      </ul>
-    `,
-    category: "Development",
-    readingTime: "5 min read",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
-  },
-  // Add more posts here
+  const posts: Record<string, any> = {};
+  
+  for (let i = 1; i <= 100; i++) {
+    const titleIndex = (i - 1) % blogTitles.length;
+    const title = i <= blogTitles.length ? blogTitles[i - 1] : `${blogTitles[titleIndex]} - Part ${Math.ceil(i / blogTitles.length)}`;
+    
+    posts[`blog-post-${i}`] = {
+      title,
+      content: `
+        <h1>${title}</h1>
+        
+        <p>Welcome to our comprehensive guide on ${title.toLowerCase()}. In this article, we'll explore the key concepts, best practices, and practical applications that will help you master this topic.</p>
+        
+        <h2>Introduction</h2>
+        <p>In today's rapidly evolving technological landscape, understanding ${title.toLowerCase()} is more important than ever. Whether you're a beginner or an experienced professional, this guide will provide valuable insights and practical knowledge.</p>
+        
+        <h2>Key Concepts</h2>
+        <p>Let's dive into the fundamental concepts that form the backbone of ${title.toLowerCase()}. We'll break down complex ideas into digestible pieces and provide real-world examples to illustrate each point.</p>
+        
+        <h2>Best Practices</h2>
+        <p>Following industry best practices is crucial for success in this field. We'll cover the most important guidelines and standards that professionals use in their daily work.</p>
+        
+        <h2>Practical Applications</h2>
+        <p>Theory is important, but practical application is where real learning happens. We'll explore various use cases and scenarios where these concepts can be applied effectively.</p>
+        
+        <h2>Future Trends</h2>
+        <p>The field is constantly evolving, and staying ahead of trends is crucial. We'll discuss emerging technologies and methodologies that are shaping the future of ${title.toLowerCase()}.</p>
+        
+        <h2>Conclusion</h2>
+        <p>Understanding ${title.toLowerCase()} is essential in today's digital world. By following the principles and practices outlined in this guide, you'll be well-equipped to tackle challenges and create innovative solutions.</p>
+      `,
+      category: categories[Math.floor(Math.random() * categories.length)],
+      readingTime: `${Math.floor(Math.random() * 10 + 3)} min read`,
+      image: `https://picsum.photos/seed/${i}/800/600`,
+    };
+  }
+  
+  return posts;
 };
+
+const posts = generatePosts();
 
 export default function BlogPost() {
   const { slug } = useParams();
@@ -90,7 +128,7 @@ export default function BlogPost() {
       <h1 className="font-merriweather text-4xl font-bold mb-6">{post.title}</h1>
 
       <div
-        className="prose prose-custom max-w-none"
+        className="prose prose-lg max-w-none"
         dangerouslySetInnerHTML={{ __html: post.content }}
       />
     </article>

@@ -12,7 +12,6 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-// Generate 100 meaningful blog posts
 const generatePosts = () => {
   const categories = ["Development", "Technology", "Productivity", "Design", "Business"];
   const posts = [];

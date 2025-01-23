@@ -6,7 +6,7 @@ export function Header() {
       <div className="container mx-auto px-4 py-4">
         <nav className="flex justify-between items-center">
           <Link to="/" className="text-xl font-bold">
-            Blog Essence Guide
+            BlogSpace
           </Link>
         </nav>
       </div>
